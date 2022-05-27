@@ -4,7 +4,14 @@ from django.views.generic import View
 
 
 def index(request):
-    return HttpResponse("<h2>FDFFDF</h2>")
+    return render(request, 'main/index.html')
+
+
+def about(request):
+    return render(request, 'main/about.html')
+
+
+
 """""
 class MainView(View):
     def get(self, request):
