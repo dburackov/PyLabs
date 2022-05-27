@@ -1,47 +1,80 @@
 body {
+    background: #fff;
+}
+
+header {
+    background: #181818;
+    display: flex;
+}
+
+header div{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #fff;
+}
+
+header a{
+   text-decoration: none;
+   color: #fff;
+   font-size: 16px;
+}
+
+.logo {
+    font-weight: bold;
+}
+
+.sub-menu {
+    padding-left: 25px;
+    min-width: 100px;
+}
+
+.sub-menu ul {
+    position: absolute;
+    top: 54px;
+    left: 92px;
+    display: none;
+}
+
+.sub-menu li {
+    padding: 10px;
+    list-style: none;
+    min-width: 100px;
+    background: #2C2C2C;
+    border-right: 1px solid #2C2C2C;
+    border-left: 1px solid #2C2C2C;
+    border-bottom: 1px solid #2C2C2C;
+}
+
+.login {
+    margin-left: 1410px;
+}
+
+.logout {
+    margin-left: 1540px;
+}
+
+.sub-menu:hover > ul {
+    display: block;
+}
+
+.sub-menu:hover, .user:hover {
     background: #2C2C2C;
 }
 
-aside {
-    float: left;
-    background: #181818;
-    width: 20%;
-    height: 100vh;
-    padding: 2.5%;
+.sub-menu li:hover {
+    background: #fff;
+}
+
+header a:hover {
     color: #fff;
-    border-right: 5px solid #EB5959;
 }
 
-aside img {
-    width: 80px;
-    float: left;
+.sub-menu li:hover{
+    color: black;
 }
 
-aside .logo {
-    font-size: 40px;
-    margin-left: 10px;
-    font-weight: bold;
-    position: relative;
-}
-
-aside h3 {
-    margin-top: 50px;
-    font-size: 28px;
-}
-
-aside ul {list-style: none}
-
-aside ul a {
-    text-decoration: none;
-}
-
-aside ul li {
-    color: #fff;
-    display: block;
-    margin-top: 20px;
-}
-
-aside ul li:hover, aside ul a:hover {
-    color: #EB5959
-}
 
