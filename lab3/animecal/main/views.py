@@ -4,7 +4,7 @@ from django.views.generic import View
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    return render(request, 'main/anime.html')
 
 
 def about(request):
