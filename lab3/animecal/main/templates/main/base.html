@@ -27,7 +27,7 @@
             <a href="#"><div class="user logout">Выйти</div></a>
         {% else %}
             <a href="#"><div class="user login">Войти</div></a>
-            <a href="#"><div class="user">Регистрация</div></a>
+            <a href="{% url 'register' %}"><div class="user">Регистрация</div></a>
         {% endif %}
         
             <!--
