@@ -8,6 +8,21 @@
 
 {% block content %}
 
+<div class="anime-page">
+    <h3>Список аниме</h3>
+    <h6>На данной странице отображены аниме, отсортированные по дате выхода</h6>
 
+
+
+    <div class="anime-table">
+        {% for a in anime %}
+        <a href=""><div class="item">
+            <p><img src="{{a.poster.url}}"></p>
+            <p class="anime-title">{{ a.title|truncatechars:20 }}</p>
+            <p class="anime-year">{{ a.year }}</p>
+        </div></a>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
