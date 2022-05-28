@@ -1,0 +1,27 @@
+</a>{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Контакты
+{% endblock %}
+
+
+{% block content %}
+
+<div class="content">
+    <h3>Мы в социальных сетях</h3>
+    <p class="desc">На данной странице предоставлены все ссылки на официальные сети проекта Animecal.<br>
+        Публикация контента в каждой сети происходит максимально независимо друг от друга.</p>
+
+    <div class="contacts">
+        <a href="https://web.telegram.org/"><img src="{% static 'main/img/tg.jpg' %}"></a>
+        <a href="https://vk.com/"><img src="{% static 'main/img/vk.jpg' %}"></a>
+        <a href="https://www.youtube.com/"><img src="{% static 'main/img/ut.jpg' %}"></a>
+        <a href="https://twitter.com/"><img src="{% static 'main/img/tw.jpg' %}"></a>
+    </div>
+
+</div>
+
+
+{% endblock %}

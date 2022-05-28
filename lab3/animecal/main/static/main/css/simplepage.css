@@ -1,0 +1,18 @@
+.content {
+    max-width: 905px;
+    margin: 0px auto;
+    margin-top: 25px;
+}
+
+.desc {
+    font-size 14px;
+}
+
+.contacts {
+    margin-top: 30px;
+}
+
+.contacts a img {
+    border: 2px solid #181818;
+    margin-right: 10px;
+}

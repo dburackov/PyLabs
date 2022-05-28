@@ -24,6 +24,10 @@ class AboutView(TemplateView):
     template_name = 'main/about.html'
 
 
+class ContactsView(TemplateView):
+    template_name = 'main/contacts.html'
+
+
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'main/register.html'
