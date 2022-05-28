@@ -74,10 +74,23 @@ WSGI_APPLICATION = 'animecal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+""""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_db',
+        'USER': 'web_monkey',
+        'PASSWORD': 'web_monkey',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
