@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from .forms import RegisterUserForm, LoginUserForm
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import View, CreateView, ListView
+from django.views.generic import View, CreateView, ListView, TemplateView
 from .models import Anime
 
 
@@ -20,8 +20,8 @@ class AnimeList(ListView):
         return Anime.objects.order_by('year')
 
 
-def about(request):
-    return render(request, 'main/about.html')
+class AboutView(TemplateView):
+    template_name = 'main/about.html'
 
 
 class RegisterUser(CreateView):
