@@ -1,0 +1,27 @@
+.reglog form {
+    border: 4px solid #181818;
+    max-width: 400px;
+    margin: 0px auto;
+    margin-top: 150px;
+    position: relative;
+    padding: 30px;
+    padding-left: 65px;
+}
+
+.form-error {
+    color: red;
+}
+
+.reglog form button {
+    margin-top: 10px;
+    background: #21497A;
+    color: #fff;
+    border: 1px solid #181818;
+    height: 35px;
+    transition: all .3s ease;
+}
+
+.reglog form button:hover {
+    background: #3069B0;
+    transition: all .3s ease;
+}

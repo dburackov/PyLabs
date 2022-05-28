@@ -5,6 +5,7 @@ body {
 header {
     background: #181818;
     display: flex;
+    position: relative;
 }
 
 header div{
@@ -28,6 +29,7 @@ header a{
 }
 
 .sub-menu {
+    padding: relative;
     padding-left: 25px;
     min-width: 100px;
 }
@@ -49,12 +51,12 @@ header a{
     border-bottom: 1px solid #2C2C2C;
 }
 
-.login {
-    margin-left: 1410px;
-}
-
-.logout {
-    margin-left: 1540px;
+.asd {
+    padding-top: 0px;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .sub-menu:hover > ul {

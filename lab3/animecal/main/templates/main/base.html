@@ -10,6 +10,8 @@
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/reglog.css' %}">
+
 </head>
 <body>
     <header>
@@ -24,42 +26,18 @@
             </ul>
         </div>
         {% if request.user.is_authenticated %}
-            <a href="#"><div class="user logout">Выйти</div></a>
+            <div class="asd">
+            <div>{{ user.username }}</div>
+            <a href="{% url 'logout' %}"><div class="user">Выйти</div></a>
+            </div>
         {% else %}
-            <a href="#"><div class="user login">Войти</div></a>
+            <div class="asd">
+            <a href="{% url 'login' %}"><div class="user">Войти</div></a>
             <a href="{% url 'register' %}"><div class="user">Регистрация</div></a>
+            </div>
         {% endif %}
-        
-            <!--
-            <ul>
-                <li class="logo"><a href="#">ANIMECAL</a></li>
-                <li><a href="#">Меню</a>
-
-                </li>
-                {% if request.user.is_authenticated %}
-                    <li><a href="#">Выйти</a></li>
-                {% else %}
-                    <li><a href="#">Войти</a></li>
-                    <li><a href="#">Регистрация</a></li>
-                {% endif %}
-            </ul>
-            -->
 
     </header>
-    <!--
-    <aside>
-        <img src="{% static 'main/img/rei.jpg' %}" alt="logo">
-        <spna class="logo">Animecal</spna>
-        <h3>Навигация</h3>
-        <ul>
-            <a href="{% url 'anime_list' %}"><li>Аниме</li></a>
-            <a href=""><li>Онгоинги</li></a>
-            <a href=""><li>Анонсы</li></a>
-            <a href="{% url 'about' %}"><li>О сайте</li></a>
-            <a href=""><li>Контакты</li></a>
-        </ul>
-    </aside>
-    -->
 
     <main>
         {% block content %}
