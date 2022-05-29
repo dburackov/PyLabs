@@ -1,15 +1,15 @@
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from .forms import RegisterUserForm, LoginUserForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import View, CreateView, ListView, TemplateView
-from .models import Anime
+from .models import Anime, Comment
 
 
 class AnimeList(ListView):
     model = Anime
-    template_name = 'main/anime.html'
+    template_name = 'main/anime_list.html'
     context_object_name = 'anime'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -40,6 +40,18 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('anime_list')
+
+
+def show_post(request, anime_id):
+    anime = get_object_or_404(Anime, pk=anime_id)
+    comments = Comment.objects.filter(anime_id=anime.pk)
+
+    context = {
+        'anime': anime,
+        'comments': comments,
+    }
+
+    return render(request, 'main/anime.html', context=context)
 
 
 def logout_user(request):
