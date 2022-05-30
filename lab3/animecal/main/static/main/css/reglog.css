@@ -33,7 +33,22 @@
     max-width: 600px;
     margin: 0px auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     position: relative;
     padding: 30px;
     padding-left: 65px;
+}
+
+.create form button {
+    margin-top: 10px;
+    background: #21497A;
+    color: #fff;
+    border: 1px solid #181818;
+    height: 35px;
+    transition: all .3s ease;
+}
+
+.create form button:hover {
+    background: #3069B0;
+    transition: all .3s ease;
 }

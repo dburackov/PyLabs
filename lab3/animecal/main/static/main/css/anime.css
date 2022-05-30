@@ -53,6 +53,19 @@
 
 /*ANIME SINGLE PAGE*/
 
+.title {
+    display: flex;
+}
+
+.title h3 {
+    margin: 0px;
+}
+
+.title a {
+    margin-top: 7px;
+    margin-left: 30px;
+}
+
 .content {
     display: flex;
     flex-wrap: wrap;
@@ -160,3 +173,5 @@
 .anime-table {
     margin-top: 15px;
 }
+
+
