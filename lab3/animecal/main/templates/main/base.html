@@ -26,6 +26,9 @@
                 <a href="anons"><li>Анонсы</li></a></li>
                 <a href="{% url 'about' %}"><li>О сайте</li></a>
                 <a href="{% url 'contacts' %}"><li>Контакты</li></a>
+                {% if request.user.is_staff %}
+                    <a href="{% url 'contacts' %}"><li>Создать</li></a>
+                {% endif %}
             </ul>
         </div>
         {% if request.user.is_authenticated %}
