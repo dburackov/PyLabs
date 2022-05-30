@@ -1,8 +1,9 @@
 import logging
 
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
-from .forms import RegisterUserForm, LoginUserForm, CommentForm
+from .forms import RegisterUserForm, LoginUserForm, CommentForm, AnimeForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import View, CreateView, ListView, TemplateView, DetailView
@@ -66,6 +67,24 @@ class AnimeView(CreateView):
         context = super().get_context_data(**kwargs)
         context['anime'] = Anime.objects.get(pk=self.kwargs['anime_id'])
         context['comments'] = Comment.objects.filter(anime_id=self.kwargs['anime_id'])
+        return context
+
+
+class CreateAnimeView(UserPassesTestMixin, CreateView):
+    model = Anime
+    template_name = 'main/create.html'
+    form_class = AnimeForm
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context
 
 

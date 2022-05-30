@@ -27,7 +27,7 @@
                 <a href="{% url 'about' %}"><li>О сайте</li></a>
                 <a href="{% url 'contacts' %}"><li>Контакты</li></a>
                 {% if request.user.is_staff %}
-                    <a href="{% url 'contacts' %}"><li>Создать</li></a>
+                    <a href="{% url 'create' %}"><li>Создать</li></a>
                 {% endif %}
             </ul>
         </div>

@@ -11,6 +11,7 @@ urlpatterns = [
     path('anime/<int:anime_id>/', AnimeView.as_view(), name='anime'),
     path('anons', AnonsView.as_view(), name='anons'),
     path('ongoing', OngoingView.as_view(), name='ongoing'),
+    path('create', CreateAnimeView.as_view(), name='create'),
     path('logout', logout_user, name='logout'),
 ]
 
