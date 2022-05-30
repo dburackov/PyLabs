@@ -1,10 +1,15 @@
+import logging
+
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
-from .forms import RegisterUserForm, LoginUserForm
+from .forms import RegisterUserForm, LoginUserForm, CommentForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import View, CreateView, ListView, TemplateView, DetailView
 from .models import Anime, Comment
+
+
+logger = logging.getLogger('django')
 
 
 class AnimeList(ListView):
@@ -42,15 +47,25 @@ class LoginUser(LoginView):
         return reverse_lazy('anime_list')
 
 
-class ShowAnime(DetailView):
-    model = Anime
+class AnimeView(CreateView):
+    model = Comment
     template_name = 'main/anime.html'
-    pk_url_kwarg = 'anime_id'
-    context_object_name = 'anime'
+    form_class = CommentForm
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_success_url(self):
+        return self.request.path
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.anime_id = Anime.objects.get(pk=self.kwargs['anime_id'])
+        obj.author = self.request.user.username
+        obj.save()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.all()
+        context['anime'] = Anime.objects.get(pk=self.kwargs['anime_id'])
+        context['comments'] = Comment.objects.filter(anime_id=self.kwargs['anime_id'])
         return context
 
 

@@ -2,7 +2,7 @@
     max-width: 905px;
     margin: 0px auto;
     margin-top: 25px;
-
+    /*border: 1px solid black;*/
 }
 
 .anime-table {
@@ -10,9 +10,6 @@
     flex-wrap: wrap;
 }
 
-.anime-table {
-    flex-wrap: wrap;
-}
 
 .anime-page a {
     text-decoration: none;
@@ -52,4 +49,105 @@
 
 .anime-table a:hover .anime-title {
     color: red;
+}
+
+/*ANIME SINGLE PAGE*/
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.block {
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+.block p {
+    font-size: 13px;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.genres p {
+    margin: 0px;
+    padding: 0x;
+}
+
+.block-title {
+    font-size: 15px;
+    font-weight: bold;
+    background: #D1DCE8;
+    padding: 3px;
+    padding-left: 10px;
+}
+
+.description {
+    max-width: 300px;
+    margin-right: 0px;
+}
+
+.inform {
+    max-width: 250px;
+}
+
+
+/*USER COMMENT*/
+
+.comment-form form {
+    position: relative;
+}
+
+.comment-form form p {
+    margin-left: 2px;
+}
+
+.comment-form form button {
+    margin-top: 10px;
+    background: #21497A;
+    color: #fff;
+    border: 1px solid #181818;
+    height: 35px;
+    transition: all .3s ease;
+}
+
+.comment-form form button:hover {
+    background: #3069B0;
+    transition: all .3s ease;
+}
+
+.comment-form form button {
+    position: absolute;
+    right: 0;
+}
+
+/*ALL COMMENTS*/
+
+.comments {
+    margin-top: 70px;
+}
+
+.comment {
+    border-bottom: 2px solid #181818;
+    padding: 5px;
+}
+
+.comment p {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.comment-username {
+    color: #21497A;
+    font-weight: bold;
+}
+
+.comment-data {
+    color: #A6A6A6;
 }

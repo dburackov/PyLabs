@@ -8,6 +8,68 @@
 
 {% block content %}
 
+<div class="anime-page">
+    <h3>{{ anime.title }}</h3>
 
+    <div class="content">
+
+        <div class="block"><img src="{{anime.poster.url}}"></div>
+
+        <div class="block inform">
+            <div class="block-title">Информация</div>
+
+            <p>Эпизоды: {{ anime.episodes }}</p>
+            <p>Статус: {{ anime.status }}</p>
+            <p>Год выхода: {{ anime.year }}</p>
+            <div class="genres">
+                <p>Жанры:&nbsp;</p>
+                {% for g in anime.genres.all %}
+                    <p>{{g}}&nbsp;</p>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="block description">
+            <div class="block-title">Описание</div>
+            <p>{{ anime.description }}</p>
+        </div>
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <div class="comment-form">
+        <div class="block">
+        <div class="block-title">Твой отзыв</div>
+
+        <form method="post">
+            {% csrf_token %}
+            {% for f in form %}
+                <p>{{ f }}</p>
+            {% endfor %}
+
+            <button type="submit">Оставить отзыв</button>
+        </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="comments">
+        <div class="block">
+            <div class="block-title">Отзывы</div>
+            {% for c in comments %}
+                <div class="comment">
+                    <table>
+                        <tr>
+                            <td><p class="comment-username">{{ c.author }}</p></td>
+                            <td><p class="comment-data">{{ c.data }}</p></td>
+                        </tr>
+                    </table>
+                    <p>{{ c.text }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
 
 {% endblock %}
