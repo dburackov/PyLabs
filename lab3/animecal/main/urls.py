@@ -9,6 +9,8 @@ urlpatterns = [
     path('login', LoginUser.as_view(), name='login'),
     path('contacts', ContactsView.as_view(), name='contacts'),
     path('anime/<int:anime_id>/', AnimeView.as_view(), name='anime'),
+    path('anons', AnonsView.as_view(), name='anons'),
+    path('ongoing', OngoingView.as_view(), name='ongoing'),
     path('logout', logout_user, name='logout'),
 ]
 
