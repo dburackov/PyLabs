@@ -95,6 +95,7 @@
 
 .inform {
     max-width: 250px;
+    min-width: 250px;
 }
 
 
@@ -150,4 +151,12 @@
 
 .comment-data {
     color: #A6A6A6;
+}
+
+
+/*ONGOINGS*/
+
+
+.anime-table {
+    margin-top: 15px;
 }

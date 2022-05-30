@@ -1,61 +1,70 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-
+from .models import Anime, Comment, Genre
 
 class BlogTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username='testuser',
-            email='test@email.com',
             password='secret'
         )
-        """
-        self.post = Blog.objects.create(
-            title='A good title',
-            content='Nice body content',
-            author=self.user,
+
+        self.anime = Anime.objects.create(
+            title='A sample title',
+            description='adf',
+            poster='static/main/img/vk.jpg',
+            year=2022,
+            episodes=12,
+            status='Ongoing',
+            release_day=0,
         )
-        """
-    """
+
+        self.genre = Genre.objects.create(
+            name='asdf'
+        )
+
+        self.comment = Anime.objects.create(
+            author='asdfadsfasdf',
+            text='comment text',
+        )
+
     def test_string_representation(self):
-        post = Blog(title='A sample title')
-        self.assertEqual(str(post), post.title)
-    """
+        self.assertEqual(str(self.anime), self.anime.title)
+        self.assertEqual(str(self.genre), self.genre.title)
+
     def test_get_absolute_url(self):
-        self.assertEqual(self.post.get_absolute_url(), '/post/1/')
+        self.assertEqual(self.anime.get_absolute_url(), reverse('anime', kwargs={'anime_id': self.anime.pk}))
 
-    def test_post_content(self):
-        self.assertEqual(f'{self.post.title}', 'A good title')
-        self.assertEqual(f'{self.post.author}', 'testuser')
-        self.assertEqual(f'{self.post.content}', 'Nice body content')
+    def test_anime_content(self):
+        self.assertEqual(f'{self.anime.title}', 'A sample title')
+        self.assertEqual(f'{self.anime.description}', 'adf')
+        self.assertEqual(f'{self.anime.year}', 2022)
+        self.assertEqual(f'{self.anime.episodes}', 12)
+        self.assertEqual(f'{self.anime.release_day}', 0)
 
-    def test_post_list_view(self):
-        response = self.client.get(reverse('home'))
+    def test_main_list_view(self):
+        response = self.client.get(reverse('anime_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Nice body content')
-        self.assertTemplateUsed(response, 'home.html')
-def test_post_detail_view(self):
-        response = self.client.get('/post/5/')
+        self.assertTemplateUsed(response, 'main/anime_list.html')
+
+    def test_anime_detail_view(self):
+        response = self.client.get(reverse('anime', kwargs={'anime_id': self.anime.pk}) )
         self.assertEqual(response.status_code, 200)
-        no_response = self.client.get('/post/100000/')
-        # print(no_response.status_code)
+        no_response = self.client.get('/anime/100000/')
         self.assertEqual(no_response.status_code, 404)
-        self.assertContains(response, 'A good title')
-        self.assertTemplateUsed(response, 'blog/post_detail.html')
+        self.assertTemplateUsed(response, 'main/anime.html')
 
-"""
-def test_post_create_view(self):
-        response = self.client.post('/account/login/', {'username': 'testuser', 'password': 'secret'})
-
-        response = self.client.post(reverse('post_new'), {
+    """
+    def test_comment_create_view(self):
+        response = self.client.comment(reverse('post_new'), {
             'title': 'New title',
             'content': 'New text',
             'categories': 'Spam',
         })
         self.assertEqual(response.status_code, 200)
-    
+
     def test_post_update_view(self):
         response = self.client.post('/account/login/', {'username': 'testuser', 'password': 'secret'})
         # print(response)
@@ -72,5 +81,4 @@ def test_post_create_view(self):
         self.assertEqual(response.status_code, 302)
         response = self.client.post(reverse('post_delete', args='4'))
         self.assertEqual(response.status_code, 302)
-        
-        """
+    """

@@ -71,7 +71,7 @@ class AnimeView(CreateView):
 
 class AnonsView(ListView):
     model = Anime
-    template_name = 'main/anons.thml'
+    template_name = 'main/anons.html'
     context_object_name = 'anime'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -84,7 +84,7 @@ class AnonsView(ListView):
 
 class OngoingView(ListView):
     model = Anime
-    template_name = 'main/announce.thml'
+    template_name = 'main/ongoing.html'
     context_object_name = 'anime'
 
     def get_context_data(self, *, object_list=None, **kwargs):

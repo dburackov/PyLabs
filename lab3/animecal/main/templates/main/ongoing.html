@@ -9,7 +9,135 @@
 {% block content %}
 
 <div class="anime-page">
+    <h3>Календарь онгоингов</h3>
+    <h6>Данный раздел отображает аниме онгоинги текущего сезона и ближайшие анонсы.</h6>
 
+
+    <div class="day">
+        <div class="block-title">Понедельник</div>
+        <div class="anime-table">
+            {% for a in anime %}
+            {% if a.release_day == 0 %}
+            <a href="{{ a.get_absolute_url }}">
+                <div class="item">
+                    <p><img src="{{a.poster.url}}"></p>
+                    <p class="anime-title">{{ a.title|truncatechars:18 }}</p>
+                    <p class="anime-year">{{ a.year }}</p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="day">
+        <div class="block-title">Вторник</div>
+        <div class="anime-table">
+            {% for a in anime %}
+            {% if a.release_day == 1 %}
+            <a href="{{ a.get_absolute_url }}">
+                <div class="item">
+                    <p><img src="{{a.poster.url}}"></p>
+                    <p class="anime-title">{{ a.title|truncatechars:18 }}</p>
+                    <p class="anime-year">{{ a.year }}</p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="day">
+        <div class="block-title">Среда</div>
+        <div class="anime-table">
+            {% for a in anime %}
+            {% if a.release_day == 2 %}
+            <a href="{{ a.get_absolute_url }}">
+                <div class="item">
+                    <p><img src="{{a.poster.url}}"></p>
+                    <p class="anime-title">{{ a.title|truncatechars:18 }}</p>
+                    <p class="anime-year">{{ a.year }}</p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="day">
+        <div class="block-title">Четверг</div>
+        <div class="anime-table">
+            {% for a in anime %}
+            {% if a.release_day == 3 %}
+            <a href="{{ a.get_absolute_url }}">
+                <div class="item">
+                    <p><img src="{{a.poster.url}}"></p>
+                    <p class="anime-title">{{ a.title|truncatechars:18 }}</p>
+                    <p class="anime-year">{{ a.year }}</p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+
+    <div class="day">
+        <div class="block-title">Пятница</div>
+        <div class="anime-table">
+            {% for a in anime %}
+            {% if a.release_day == 4 %}
+            <a href="{{ a.get_absolute_url }}">
+                <div class="item">
+                    <p><img src="{{a.poster.url}}"></p>
+                    <p class="anime-title">{{ a.title|truncatechars:18 }}</p>
+                    <p class="anime-year">{{ a.year }}</p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="day">
+        <div class="block-title">Суббота</div>
+        <div class="anime-table">
+            {% for a in anime %}
+            {% if a.release_day == 5 %}
+            <a href="{{ a.get_absolute_url }}">
+                <div class="item">
+                    <p><img src="{{a.poster.url}}"></p>
+                    <p class="anime-title">{{ a.title|truncatechars:18 }}</p>
+                    <p class="anime-year">{{ a.year }}</p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="day">
+        <div class="block-title">Воскресенье</div>
+        <div class="anime-table">
+            {% for a in anime %}
+            {% if a.release_day == 6 %}
+            <a href="{{ a.get_absolute_url }}">
+                <div class="item">
+                    <p><img src="{{a.poster.url}}"></p>
+                    <p class="anime-title">{{ a.title|truncatechars:18 }}</p>
+                    <p class="anime-year">{{ a.year }}</p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    </div>
 </div>
 
 {% endblock %}
