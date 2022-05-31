@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
 
-</body>
-</html>
+
+{% block title %}
+    Редактировать
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="create"><form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for f in form %}
+        <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>
+        <p>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+
+
+    <button type="submit">Редактировать</button>
+</form></div>
+{% endblock %}

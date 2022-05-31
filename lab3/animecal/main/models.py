@@ -23,7 +23,7 @@ class Anime(models.Model):
         return self.title;
 
     def get_absolute_url(self):
-        return reverse('anime', kwargs={'anime_id': self.pk})
+        return reverse('anime', kwargs={'pk': self.pk})
 
 
 class Comment(models.Model):
@@ -31,6 +31,5 @@ class Comment(models.Model):
     author = models.CharField(max_length=255)
     text = models.TextField()
     data = models.DateTimeField(auto_now_add=True)
-
 
 

@@ -13,8 +13,8 @@
     <div class="title">
         <h3>{{ anime.title }}</h3>
         {% if request.user.is_staff %}
-            <a href="">Редактировать</a>
-            <a href="">Удалить</a>
+            <a href="{% url 'edit' anime.id %}">Редактировать</a>
+            <a href="{% url 'delete' anime.id %}">Удалить</a>
         {% endif %}
     </div>
 

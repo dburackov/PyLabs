@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
 
-</body>
-</html>
+
+{% block title %}
+    Удалить
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="create"><form method="post">
+    <p>{{ anime.title }}</p>
+    {% csrf_token %}
+
+    {% for f in form %}
+        <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>
+        <p>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+
+
+    <button type="submit">Удалить</button>
+</form></div>
+{% endblock %}

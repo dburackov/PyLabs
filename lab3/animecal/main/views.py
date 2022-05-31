@@ -6,7 +6,7 @@ from django.contrib.auth.views import LoginView
 from .forms import RegisterUserForm, LoginUserForm, CommentForm, AnimeForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import View, CreateView, ListView, TemplateView, DetailView
+from django.views.generic import View, CreateView, ListView, TemplateView, DetailView, UpdateView, DeleteView
 from .models import Anime, Comment
 
 
@@ -58,15 +58,15 @@ class AnimeView(CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        obj.anime_id = Anime.objects.get(pk=self.kwargs['anime_id'])
+        obj.anime_id = Anime.objects.get(pk=self.kwargs['pk'])
         obj.author = self.request.user.username
         obj.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['anime'] = Anime.objects.get(pk=self.kwargs['anime_id'])
-        context['comments'] = Comment.objects.filter(anime_id=self.kwargs['anime_id'])
+        context['anime'] = Anime.objects.get(pk=self.kwargs['pk'])
+        context['comments'] = Comment.objects.filter(anime_id=self.kwargs['pk'])
         return context
 
 
@@ -86,6 +86,24 @@ class CreateAnimeView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+class AnimeEditView(UserPassesTestMixin, UpdateView):
+    model = Anime
+    template_name = 'main/edit.html'
+    form_class = AnimeForm
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class AnimeDeleteView(UserPassesTestMixin, DeleteView):
+    model = Anime
+    template_name = 'main/delete.html'
+    success_url = '/'
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class AnonsView(ListView):

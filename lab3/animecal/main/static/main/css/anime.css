@@ -55,10 +55,12 @@
 
 .title {
     display: flex;
+    /*flex-wrap: wrap;*/
 }
 
 .title h3 {
     margin: 0px;
+    max-width: 600px;
 }
 
 .title a {

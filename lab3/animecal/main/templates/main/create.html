@@ -10,7 +10,8 @@
 
 {% block content %}
 
-<div class="create"><form method="post">
+<div class="create"><form method="post" enctype="multipart/form-data">
+
     {% csrf_token %}
 
     {% for f in form %}
@@ -19,7 +20,6 @@
         <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
 
-    <div class="form-error">{{ form.non_field_errors }}</div>
 
     <button type="submit">Создать</button>
 </form></div>

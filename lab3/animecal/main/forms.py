@@ -38,6 +38,3 @@ class AnimeForm(forms.ModelForm):
     class Meta:
         model = Anime
         fields = '__all__'
-        widgets = {
-
-        }
