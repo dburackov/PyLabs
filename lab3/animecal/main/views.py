@@ -1,8 +1,11 @@
 import logging
 
+from asgiref.sync import sync_to_async
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
+import asyncio
+
 from .forms import RegisterUserForm, LoginUserForm, CommentForm, AnimeForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -11,6 +14,21 @@ from .models import Anime, Comment
 
 
 logger = logging.getLogger('django')
+
+
+@sync_to_async
+def get_anime_by_id(anime_id):
+    return Anime.objects.get(pk=anime_id)
+
+
+@sync_to_async
+def get_anime_ordered_by(attr):
+    return Anime.objects.order_by(attr)
+
+
+@sync_to_async
+def get_anime_comments(anime_id):
+    return Comment.objects.filter(anime_id=anime_id)
 
 
 class AnimeList(ListView):
@@ -23,7 +41,8 @@ class AnimeList(ListView):
         return context
 
     def get_queryset(self):
-        return Anime.objects.order_by('year')
+        return asyncio.run(get_anime_ordered_by('year'))
+        #return Anime.objects.order_by('year')
 
 
 class AboutView(TemplateView):
@@ -58,15 +77,18 @@ class AnimeView(CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        obj.anime_id = Anime.objects.get(pk=self.kwargs['pk'])
+        obj.anime_id = asyncio.run(get_anime_by_id(self.kwargs['pk']))
+        #obj.anime_id = Anime.objects.get(pk=self.kwargs['pk'])
         obj.author = self.request.user.username
         obj.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['anime'] = Anime.objects.get(pk=self.kwargs['pk'])
-        context['comments'] = Comment.objects.filter(anime_id=self.kwargs['pk'])
+        #context['anime'] = Anime.objects.get(pk=self.kwargs['pk'])
+        context['anime'] = asyncio.run(get_anime_by_id(self.kwargs['pk']))
+        #context['comments'] = Comment.objects.filter(anime_id=self.kwargs['pk'])
+        context['comments'] = asyncio.run(get_anime_comments(self.kwargs['pk']))
         return context
 
 
